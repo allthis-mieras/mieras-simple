@@ -1,0 +1,69 @@
+---
+const { class: className, ...rest } = Astro.props
+---
+
+<section class={`px-2 widget ${className}`} {...rest}>
+  <p class="intro">
+    Hello, I’m Maarten Mieras, an UX and visual designer with 15 years of freelance experience and co-owner of All This.
+  </p>
+  <p>
+    I specialize in creating intuitive and effective digital interfaces that align user needs with business goals. My
+    holistic approach ensures user-centered, accessible experiences from start to finish.
+  </p>
+  <ul class="flex flex-col items-stretch gap-2 actions">
+    <li><a href="" class="rounded-full button mail"><span>e-mail</span></a></li>
+    <li><a href="" class="button phone"><span>call</span></a></li>
+    <li><a href="" class="button linkedin"><span>linkedin</span></a></li>
+  </ul>
+</section>
+
+<style>
+  p {
+    font-size: var(--fontsize--1);
+    font-weight: 700;
+    line-height: 112.5%;
+    text-transform: uppercase;
+    text-wrap: stable;
+  }
+  .intro {
+    font-size: var(--fontsize-1);
+    line-height: 112.5%;
+    text-wrap: balance;
+  }
+
+  p + p {
+    margin-block: 1rem;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  .button {
+    display: flex;
+
+    justify-content: center;
+    color: (var(--color-text));
+    font-size: var(--fontsize-1);
+    padding-block: var(--space-s);
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-large);
+    /* background: var(--color-text); */
+  }
+
+  .button:hover span {
+    display: none;
+  }
+
+  .mail:hover:before {
+    content: 'hello@mier.as';
+  }
+  .phone:hover:before {
+    content: '+31(6)42106394';
+  }
+  .linkedin:hover:before {
+    content: 'connect';
+  }
+</style>

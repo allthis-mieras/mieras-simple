@@ -1,36 +1,64 @@
 ---
 import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
 
-const { src = '/astronaut-hero-img.webp' } = Astro.props
+import WidgetAbout from './WidgetAbout.astro'
+import WidgetPrinciples from './WidgetPrinciples.astro'
+import WidgetPhotography from './WidgetPhotography.astro'
+import MarqueeServices from './MarqueeServices.astro'
+
+import bg01 from '../assets/img/mieras-portrait-01.jpg' // Image is 1600x900
+import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
+
+// const { bg01 = '/mieras-bg-01.png', bg02 = '/mieras-bg-02.png' } = Astro.props
 ---
 
-<section class="hero my-24">
-  <div class="container">
-    <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
-      <div class="flex flex-col items-center gap-8 md:items-start">
-        <h1 class="text-center text-6xl md:text-left lg:text-8xl">
-          <slot><span class="text-gradient">Accessible</span> Starter for Astro</slot>
-        </h1>
-        <div class="flex flex-col gap-3 min-[500px]:flex-row">
-          <a class="button has-icon" href="https://github.com/markteekman/accessible-astro-starter">
-            <Icon name="ion:star-outline" />
-            Star on GitHub
-          </a>
-          <a
-            class="button has-icon color-secondary"
-            href="https://github.com/markteekman/accessible-astro-starter/blob/main/README.md"
-          >
-            <Icon name="ion:bookmark-outline" />
-            Read the Docs
-          </a>
-        </div>
-      </div>
-      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+<section class="relative flex overflow-hidden hero">
+  <div class="z-50 flex flex-col justify-between stretch hero__content min-h-max">
+    <MarqueeServices />
+
+    <div
+      class="container grid items-end justify-end grid-cols-1 gap-8 widgets z-5 stretch md:row-auto md:grid-cols-4 lg:grid-cols-3"
+    >
+      <WidgetAbout class="col-span-1 md:col-span-2 lg:col-span-1" />
+      <WidgetPrinciples class="col-span-1 md:col-span-2 lg:col-span-1" />
+      <WidgetPhotography class="col-span-1 md:col-span-4 lg:col-span-1" />
     </div>
   </div>
+
+  <Image
+    src={bg01}
+    widths={[240, 540, 720, bg01.width]}
+    sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
+    alt="A description of my image."
+    quality="max"
+    class="absolute top-0 left-0 object-cover w-full h-full z--2 mix-blend-hue"
+    decoding="async"
+  />
+
+  <Image
+    src={bg02}
+    widths={[240, 540, 720, bg02.width]}
+    sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
+    alt="A description of my image."
+    quality="90"
+    class="absolute top-0 left-0 object-cover w-full h-full z--1 mix-blend-lighten"
+    decoding="async"
+  />
+
+  <!-- <img class="absolute top-0 left-0 object-cover w-full h-full z--1 mix-blend-hue" src={bg01} alt="" decoding="async" /> -->
+  <!-- <img
+    class="absolute top-0 left-0 object-cover w-full h-full z--2 mix-blend-lighten"
+    src={bg02}
+    alt=""
+    decoding="async"
+  /> -->
 </section>
 
 <style lang="scss">
+  // * {
+  //   border: 1px solid red;
+  // }
   .text-gradient {
     background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-500));
     background-clip: border-box;
@@ -43,5 +71,28 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .hero {
+    min-height: 100vh;
+    background: red;
+
+    background: linear-gradient(180deg, #ef8d45 0%, #b3727e 48%, #62426b 100%);
+  }
+
+  .hero__content {
+    gap: 60vh;
+  }
+
+  .widgets {
+    gap: var(--space-xs);
+    padding-bottom: var(--space-xs);
+  }
+
+  :global(.widget) {
+    background: var(--background);
+    border-radius: var(--radius-default);
+    padding: var(--space-s);
+    overflow: hidden;
   }
 </style>

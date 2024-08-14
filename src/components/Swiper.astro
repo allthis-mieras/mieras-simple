@@ -1,0 +1,58 @@
+---
+import 'swiper/swiper-bundle.css'
+
+const { class: className, ...rest } = Astro.props
+
+export interface Slide {
+  id: string
+  imageSrc: string
+  alt: string
+  content?: string
+}
+
+export interface SwiperProps {
+  config?: object
+}
+---
+
+<div class={`swiper-body ${className}`} {...rest}>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <slot />
+      <!-- De slides worden hier via slots ingevoegd -->
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+</div>
+
+<style>
+  .swiper-body {
+    position: relative;
+
+    height: auto;
+  }
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+</style>
+
+<script src="../libs/swiper_simple.js"></script>

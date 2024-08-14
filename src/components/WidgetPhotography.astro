@@ -1,0 +1,73 @@
+---
+import Swiper from './Swiper.astro'
+import { Picture } from 'astro:assets'
+
+const { class: className, ...rest } = Astro.props
+
+import MierasPhoto01 from '../assets/img/mieras-photo-01.jpg'
+import MierasPhoto02 from '../assets/img/mieras-photo-02.jpg'
+import MierasPhoto03 from '../assets/img/mieras-photo-03.jpg'
+import MierasPhoto04 from '../assets/img/mieras-photo-04.jpg'
+
+const config = {
+  slidesPerView: 3,
+  speed: 500,
+  loop: true,
+  navigation: true,
+  pagination: { clickable: true },
+  scrollbar: false,
+}
+---
+
+<section class={`widget grid grid-cols-4 md:grid-cols-1 ${className}`} {...rest}>
+  <Swiper class="col-span-2" config={config}>
+    <div class="swiper-slide">
+      <Picture src={MierasPhoto01} formats={['avif', 'webp']} alt="A description of my image." />
+    </div>
+    <div class="swiper-slide">
+      <Picture src={MierasPhoto02} formats={['avif', 'webp']} alt="A description of my image." />
+    </div>
+    <div class="swiper-slide">
+      <Picture src={MierasPhoto03} formats={['avif', 'webp']} alt="A description of my image." />
+    </div>
+    <div class="swiper-slide">
+      <Picture src={MierasPhoto04} formats={['avif', 'webp']} alt="A description of my image." />
+    </div>
+  </Swiper>
+  <!-- <Swiper /> -->
+  <div class="col-span-2 content">
+    <h2>Photography</h2>
+    <p>
+      Beyond my digital design work, I have a deep passion for analog photography. I love capturing moments on 35mm film
+      with my Canon A1 or Rollei 35 LED, and on 120mm with my Yashica D Mat or Rolleiflex 3.5. The process of developing
+      my own black-and-white film is a rewarding contrast to my digital work—slowing down, embracing the imperfections,
+      and connecting with the tactile, timeless nature of film photography.
+    </p>
+    <a href="https://downthegrain.com/mieras" class="link">downthegrain.com/mieras</a>
+  </div>
+</section>
+
+<style>
+  .widget {
+    padding: 0;
+    color: var(--background);
+    background: var(--font-color);
+  }
+
+  .content {
+    padding: var(--space-s);
+  }
+
+  h2 {
+    line-height: 100%;
+  }
+
+  p {
+    font-size: var(--fontsize--2);
+
+    line-height: 133%;
+
+    text-wrap: stable;
+    margin-block: 1rem;
+  }
+</style>

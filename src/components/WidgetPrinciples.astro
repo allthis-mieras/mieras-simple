@@ -1,0 +1,62 @@
+---
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+const { class: className, ...rest } = Astro.props
+---
+
+<section class={`widget ${className}`} {...rest}>
+  <Accordion>
+    <AccordionItem header="User-Centric Design">
+      <p>
+        Every project begins with a deep dive into understanding the needs, behaviors, and pain points of the end users.
+        This ensures that the designs are intuitive and truly meet the users’ needs.
+      </p>
+    </AccordionItem>
+    <AccordionItem header="Second Item">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nobis optio? Qui in quo accusantium
+        debitis sapiente obcaecati magnam incidunt sit. Molestiae exercitationem quibusdam quod veritatis laboriosam est
+        tenetur.
+      </p>
+    </AccordionItem>
+  </Accordion>
+</section>
+
+<style lang="scss" is:global>
+  body .accordion__item {
+    button {
+      // background-color: purple
+      font-size: var(--fontsize-0);
+      justify-content: space-between;
+
+      align-items: center;
+      padding: var(--space-2xs);
+
+      &:hover &:focus {
+        background-color: peru;
+      }
+
+      // &:before {
+      //   content: '👍';
+      //   font-size: var(--fontsize--2);
+      //   background: green;
+      //   padding: var(--space-2xs);
+      //   border-radius: 100%;
+      // }
+
+      svg {
+        width: 1rem;
+      }
+    }
+
+    &.is-active button {
+    }
+
+    .accordion__panel {
+      // padding: var(--space-2xs);
+
+      .panel__inner {
+        padding: var(--space-2xs);
+      }
+    }
+  }
+</style>
