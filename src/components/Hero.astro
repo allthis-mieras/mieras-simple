@@ -31,7 +31,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
       sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
       alt="A description of my image."
       quality="90"
-      class="absolute top-0 left-0 object-cover w-full h-full bg02 z--1 mix-blend-lighten"
+      class="fixed top-0 left-0 object-cover w-full h-full bg02 z--1 mix-blend-lighten"
       decoding="async"
     />
   </div>
@@ -61,6 +61,21 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
     height: 100%;
     background: linear-gradient(180deg, #ef8d45 0%, #b3727e 48%, #62426b 100%);
     animation: hue-rotate 12s linear infinite;
+  }
+  .bg01 {
+    -webkit-mix-blend-mode: hue; /* Older Safari versions */
+    -moz-mix-blend-mode: hue; /* Older Firefox versions */
+    -ms-mix-blend-mode: hue; /* Older IE versions (but mix-blend-mode is not supported in IE) */
+    -o-mix-blend-mode: hue; /* Older Opera versions */
+    mix-blend-mode: hue; /* Standard property */
+  }
+
+  .bg02 {
+    -webkit-mix-blend-mode: lighten; /* Older Safari versions */
+    -moz-mix-blend-mode: lighten; /* Older Firefox versions */
+    -ms-mix-blend-mode: lighten; /* Older IE versions (but mix-blend-mode is not supported in IE) */
+    -o-mix-blend-mode: lighten; /* Older Opera versions */
+    mix-blend-mode: lighten; /* Standard property */
   }
 
   .background::after {
