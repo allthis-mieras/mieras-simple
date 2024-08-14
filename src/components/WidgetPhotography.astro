@@ -19,8 +19,8 @@ const config = {
 }
 ---
 
-<section class={`widget grid grid-cols-4 md:grid-cols-1 ${className}`} {...rest}>
-  <Swiper class="col-span-2" config={config}>
+<section class={`widget grid grid-cols-1 md:grid-cols-4 lg:grid-cols-1 ${className}`} {...rest}>
+  <Swiper class="md:col-span-2" config={config}>
     <div class="swiper-slide">
       <Picture src={MierasPhoto01} formats={['avif', 'webp']} alt="A description of my image." />
     </div>
@@ -35,7 +35,7 @@ const config = {
     </div>
   </Swiper>
   <!-- <Swiper /> -->
-  <div class="col-span-2 content">
+  <div class="content md:col-span-2">
     <h2>Photography</h2>
     <p>
       Beyond my digital design work, I have a deep passion for analog photography. I love capturing moments on 35mm film
@@ -64,10 +64,20 @@ const config = {
 
   p {
     font-size: var(--fontsize--2);
-
+    font-weight: bold;
     line-height: 133%;
+    opacity: 0.8;
 
     text-wrap: stable;
     margin-block: 1rem;
+  }
+  .link {
+    font-family: var(--font-family-mono);
+    font-size: var(--fontsize--3);
+    text-transform: uppercase;
+    color: var(--action-color);
+  }
+  .link:hover {
+    color: var(--background);
   }
 </style>

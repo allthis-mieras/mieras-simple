@@ -1,62 +1,46 @@
 ---
-import { Accordion, AccordionItem } from 'accessible-astro-components'
+// import { Accordion, AccordionItem } from 'accessible-astro-components'
+import Accordion from './Accordion.astro'
+import AccordionItem from './AccordionItem.astro'
+
 const { class: className, ...rest } = Astro.props
 ---
 
-<section class={`widget ${className}`} {...rest}>
+<section class={`widget  ${className}`} {...rest}>
   <Accordion>
-    <AccordionItem header="User-Centric Design">
+    <AccordionItem header="User-Centric Design" number="1" open={true}>
       <p>
         Every project begins with a deep dive into understanding the needs, behaviors, and pain points of the end users.
-        This ensures that the designs are intuitive and truly meet the users’ needs.
+        This ensures that the designs are intuitive and truly meet the users' needs.
       </p>
     </AccordionItem>
-    <AccordionItem header="Second Item">
+    <AccordionItem header="Strategic Alignment" number="2">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nobis optio? Qui in quo accusantium
-        debitis sapiente obcaecati magnam incidunt sit. Molestiae exercitationem quibusdam quod veritatis laboriosam est
-        tenetur.
+        I align user goals with business objectives, ensuring that the design not only enhances the user experience but
+        also drives business success. This strategic alignment is crucial for creating designs that are both functional
+        and impactful.
+      </p>
+    </AccordionItem>
+    <AccordionItem header="Collaborative Process" number="3">
+      <p>
+        Collaboration is key. I work closely with stakeholders, developers, and other designers to ensure that the
+        project vision is realized and that every aspect of the design is meticulously crafted and executed.
+      </p>
+    </AccordionItem>
+    <AccordionItem header="Iterative Development" number="4">
+      <p>
+        I believe in an iterative design process, where feedback is continuously incorporated to refine and improve the
+        design. This approach ensures that the final product is polished and user-tested.
+      </p>
+    </AccordionItem>
+    <AccordionItem header="Versatility" number="5">
+      <p>
+        Whether designing for websites, mobile apps, or any other digital interface, my focus remains on creating
+        seamless, engaging, and accessible experiences. Each project is tailored to meet its unique challenges and
+        goals, ensuring a custom-fit solution.
       </p>
     </AccordionItem>
   </Accordion>
 </section>
 
-<style lang="scss" is:global>
-  body .accordion__item {
-    button {
-      // background-color: purple
-      font-size: var(--fontsize-0);
-      justify-content: space-between;
-
-      align-items: center;
-      padding: var(--space-2xs);
-
-      &:hover &:focus {
-        background-color: peru;
-      }
-
-      // &:before {
-      //   content: '👍';
-      //   font-size: var(--fontsize--2);
-      //   background: green;
-      //   padding: var(--space-2xs);
-      //   border-radius: 100%;
-      // }
-
-      svg {
-        width: 1rem;
-      }
-    }
-
-    &.is-active button {
-    }
-
-    .accordion__panel {
-      // padding: var(--space-2xs);
-
-      .panel__inner {
-        padding: var(--space-2xs);
-      }
-    }
-  }
-</style>
+<style></style>

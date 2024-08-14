@@ -5,8 +5,8 @@ const currentYear = new Date().getFullYear()
 ---
 
 <footer>
-  <section class="py-8">
-    <div class="container grid grid-cols-4 stretch">
+  <section class="">
+    <div class="grid grid-cols-2 cols md:grid-cols-4 stretch">
       <div class="col">
         <h3>Clients</h3>
         <ul class="clients">
@@ -48,6 +48,10 @@ const currentYear = new Date().getFullYear()
           <li>Behance</li>
         </ul>
       </div>
+       <div class="col">
+        <h3>All This</h3>
+        <p>All This is a design and branding studio that connects people and purpose through meaningful digital experiences.</p>
+      </div>
     </div>
   </section>
   <section class="py-8">
@@ -60,11 +64,26 @@ const currentYear = new Date().getFullYear()
 </footer>
 
 <style>
+
+  footer{
+    background: var(--background);
+   
+    
+  }
+
+  .cols {
+     gap:1px;
+  }
+
+  .col {
+padding: var(--space-m);
+background: var(--background);
+  }
   ul li {
     font-family: var(--font-family-mono);
     font-size: var(--fontsize--2);
     text-transform: uppercase;
-    line-height: 120%;
+    line-height: 133%;
   }
 
   ul li:hover {

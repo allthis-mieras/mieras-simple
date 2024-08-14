@@ -14,70 +14,106 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
 ---
 
 <section class="relative flex overflow-hidden hero">
+  <div class="background">
+    <Image
+      src={bg01}
+      widths={[240, 540, 720, bg01.width]}
+      sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
+      alt="A description of my image."
+      quality="max"
+      class="absolute top-0 left-0 object-cover w-full h-full scale-110 bg01 z--2 mix-blend-hue"
+      decoding="async"
+    />
+
+    <Image
+      src={bg02}
+      widths={[240, 540, 720, bg02.width]}
+      sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
+      alt="A description of my image."
+      quality="90"
+      class="absolute top-0 left-0 object-cover w-full h-full bg02 z--1 mix-blend-lighten"
+      decoding="async"
+    />
+  </div>
   <div class="z-50 flex flex-col justify-between stretch hero__content min-h-max">
     <MarqueeServices />
 
     <div
       class="container grid items-end justify-end grid-cols-1 gap-8 widgets z-5 stretch md:row-auto md:grid-cols-4 lg:grid-cols-3"
     >
-      <WidgetAbout class="col-span-1 md:col-span-2 lg:col-span-1" />
-      <WidgetPrinciples class="col-span-1 md:col-span-2 lg:col-span-1" />
-      <WidgetPhotography class="col-span-1 md:col-span-4 lg:col-span-1" />
+      <WidgetAbout class="col-span-1 about md:col-span-2 lg:col-span-1" />
+      <WidgetPrinciples class="col-span-1 principles md:col-span-2 lg:col-span-1" />
+      <WidgetPhotography class="col-span-1 photography md:col-span-4 lg:col-span-1" />
     </div>
   </div>
-
-  <Image
-    src={bg01}
-    widths={[240, 540, 720, bg01.width]}
-    sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
-    alt="A description of my image."
-    quality="max"
-    class="absolute top-0 left-0 object-cover w-full h-full z--2 mix-blend-hue"
-    decoding="async"
-  />
-
-  <Image
-    src={bg02}
-    widths={[240, 540, 720, bg02.width]}
-    sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
-    alt="A description of my image."
-    quality="90"
-    class="absolute top-0 left-0 object-cover w-full h-full z--1 mix-blend-lighten"
-    decoding="async"
-  />
-
-  <!-- <img class="absolute top-0 left-0 object-cover w-full h-full z--1 mix-blend-hue" src={bg01} alt="" decoding="async" /> -->
-  <!-- <img
-    class="absolute top-0 left-0 object-cover w-full h-full z--2 mix-blend-lighten"
-    src={bg02}
-    alt=""
-    decoding="async"
-  /> -->
 </section>
 
 <style lang="scss">
-  // * {
-  //   border: 1px solid red;
-  // }
-  .text-gradient {
-    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-500));
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  :global(.darkmode .text-gradient) {
-    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-400));
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   .hero {
     min-height: 100vh;
-    background: red;
+  }
 
+  .background {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
     background: linear-gradient(180deg, #ef8d45 0%, #b3727e 48%, #62426b 100%);
+    animation: hue-rotate 12s linear infinite;
+  }
+
+  .background::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #0000009f 100%);
+    z-index: 10;
+  }
+
+  @keyframes rotate-gradient {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes hue-rotate {
+    from {
+      -webkit-filter: hue-rotate(0);
+      -moz-filter: hue-rotate(0);
+      -ms-filter: hue-rotate(0);
+      filter: hue-rotate(0);
+    }
+    to {
+      -webkit-filter: hue-rotate(360deg);
+      -moz-filter: hue-rotate(360deg);
+      -ms-filter: hue-rotate(360deg);
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  .bg01 {
+    filter: blur(2vw);
+    animation: blur 12s ease-in-out alternate infinite;
+  }
+
+  @keyframes blur {
+    from {
+      -webkit-filter: blur(0);
+      -moz-filter: blur(0);
+      -ms-filter: blur(0);
+      filter: blur(0);
+      transform: scale(1);
+    }
+    to {
+      -webkit-filter: blur(2vw);
+      -moz-filter: blur(2vw);
+      -ms-filter: blur(2vw);
+      filter: blur(2vw);
+      transform: scale(2);
+    }
   }
 
   .hero__content {
@@ -94,5 +130,31 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
     border-radius: var(--radius-default);
     padding: var(--space-s);
     overflow: hidden;
+  }
+
+  :global(.about) {
+    --font-color: #111;
+    --background: #f1eeeb;
+    --active-bg: #fff;
+  }
+  :global(.darkmode .about) {
+    --font-color: #111;
+    --background: #111;
+    --active-bg: #000;
+  }
+
+  :global(.principles) {
+    --text-color: #111;
+    --background: #f1eeeb;
+    --active-bg: #fff;
+  }
+  :global(.darkmode .principles) {
+    --text-color: #f1eeeb;
+    --background: #111 !important;
+    --active-bg: #000;
+  }
+
+  .principles {
+    padding: var(--space-xs);
   }
 </style>

@@ -18,12 +18,17 @@ const { class: className, ...rest } = Astro.props
 </section>
 
 <style>
+  .widget {
+    background: #fd8962;
+  }
+
   p {
     font-size: var(--fontsize--1);
     font-weight: 700;
     line-height: 112.5%;
     text-transform: uppercase;
     text-wrap: stable;
+    color: var(--font-color);
   }
   .intro {
     font-size: var(--fontsize-1);
@@ -50,7 +55,14 @@ const { class: className, ...rest } = Astro.props
     text-align: center;
     text-decoration: none;
     border-radius: var(--radius-large);
-    /* background: var(--color-text); */
+    background: var(--background);
+    border-color: var(--background);
+  }
+
+  .button:hover {
+    background: var(--action-color);
+    border-color: var(--action-color);
+    color: var(--font-color);
   }
 
   .button:hover span {

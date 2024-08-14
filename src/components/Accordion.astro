@@ -1,0 +1,106 @@
+---
+let index = 0
+---
+
+<div>
+  <slot />
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const details = document.querySelectorAll('details')
+
+    details.forEach((targetDetail) => {
+      targetDetail.addEventListener('click', () => {
+        details.forEach((detail) => {
+          if (detail !== targetDetail) {
+            detail.removeAttribute('open')
+          }
+        })
+      })
+    })
+  })
+</script>
+
+<style is:global>
+  details {
+    max-width: 800px;
+    box-sizing: border-box;
+
+    border-radius: var(--radius-default);
+    background: none;
+    transition: box-shadow 0.3s 0s ease;
+    box-shadow: 0px 0px 0px 0px #333;
+  }
+
+  details[open] {
+    background: var(--active-bg);
+  }
+
+  details:focus-within {
+    box-shadow: 0 0 0 4px #000, 0 0 0 6px #rgba(255, 255, 255, 0.2);
+  }
+
+  summary {
+    padding: var(--space-s) var(--space-xs) var(--space-2xs) var(--space-xs);
+    display: flex;
+    align-items: center;
+    color: var(--font-color);
+    position: relative;
+    cursor: pointer;
+    outline: transparent;
+  }
+
+  summary .number {
+    font-size: var(--fontsize-1);
+    font-weight: bold;
+    margin-right: 0.875rem;
+    transition: 0.25s transform ease;
+    display: flex;
+    width: 1rem;
+    height: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xs);
+    background: var(--active-bg);
+    border-radius: 100vw;
+  }
+
+  details[open] > summary .number {
+    background: var(--action-color);
+    color: var(--background);
+  }
+
+  summary .title {
+    flex: 1;
+    font-size: var(--fontsize-1);
+    font-weight: bold;
+  }
+
+  details[open] > summary .icon {
+    /* transform: rotate(180deg); */
+  }
+
+  summary .icon {
+    /* background-image: url('https://assets.codepen.io/7212043/rounded-arrow.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.6; 
+    transform-origin: 1rem 50%;*/
+    transition: 0.25s transform ease;
+    display: flex;
+    padding: var(--space-2xs);
+    background: var(--active-bg);
+    border-radius: 100vw;
+  }
+
+  details .content {
+    border-top: none;
+    padding: 0 var(--space-l) var(--space-xs) 0;
+    padding-left: calc(var(--space-xs) * 2 + 2.225rem);
+    border-top: none;
+    font-size: var(--fontsize--1);
+    line-height: 133%;
+    color: var(--font-color);
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+const { header, number, children, open = false } = Astro.props
+import { Icon } from 'astro-icon/components'
+
+let isOpen = open
+
+function toggleIcon() {
+  isOpen = !isOpen
+}
+---
+
+<details {open}>
+  <summary>
+    <span class="number">{number}</span>
+    <span class="title">{header}</span>
+    <span class="icon"><Icon class="plus" name="fe:plus" /><Icon class="minus" name="fe:minus" /></span>
+  </summary>
+  <div class="content">
+    <slot />
+  </div>
+</details>
+
+<style>
+  details .minus {
+    display: none;
+  }
+
+  details[open] .plus {
+    display: none;
+  }
+
+  details[open] .minus {
+    display: block;
+  }
+</style>
