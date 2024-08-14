@@ -14,7 +14,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
 ---
 
 <section class="relative flex overflow-hidden hero">
-  <div class="background">
+  <div class="relative background overflow-clip">
     <Image
       src={bg01}
       widths={[240, 540, 720, bg01.width]}
@@ -31,7 +31,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
       sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
       alt="A description of my image."
       quality="90"
-      class="fixed top-0 left-0 object-cover w-full h-full bg02 z--1 mix-blend-lighten"
+      class="sticky top-0 left-0 object-cover w-full h-full bg02 z--1 mix-blend-lighten"
       decoding="async"
     />
   </div>
@@ -51,16 +51,17 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
 <style lang="scss">
   .hero {
     min-height: 100vh;
+    overflow: hidden;
   }
 
   .background {
     position: absolute;
     top: 0;
-
     width: 100%;
     height: 100%;
     background: linear-gradient(180deg, #ef8d45 0%, #b3727e 48%, #62426b 100%);
     animation: hue-rotate 12s linear infinite;
+    z-index: -1;
   }
   .bg01 {
     -webkit-mix-blend-mode: hue; /* Older Safari versions */
@@ -85,7 +86,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
     width: 100%;
     height: 50%;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #0000009f 100%);
-    z-index: 10;
+    z-index: 2;
   }
 
   @keyframes rotate-gradient {
@@ -132,7 +133,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
   }
 
   .hero__content {
-    gap: 60vh;
+    gap: calc(40vh + 10vw);
   }
 
   .widgets {
@@ -171,5 +172,16 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
 
   .principles {
     padding: var(--space-xs);
+  }
+
+  @media screen and (max-width: 768px) {
+    .background {
+      animation: none;
+    }
+
+    .bg01 {
+      filter: blur(2vw);
+      animation: none;
+    }
   }
 </style>
