@@ -21,7 +21,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
       sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
       alt="A description of my image."
       quality="max"
-      class="absolute top-0 left-0 object-cover w-full h-full scale-110 bg01 z--2 mix-blend-hue"
+      class="absolute top-0 left-0 object-cover w-full h-full scale-110 bg01 -z-20 mix-blend-hue"
       decoding="async"
     />
 
@@ -31,7 +31,7 @@ import bg02 from '../assets/img/mieras-bg-02-grain.png' // Image is 1600x900
       sizes={`(max-width: 360px) 720px, (max-width: 720px) 1440px, (max-width: 1600px) 2560px, ${bg01.width}px`}
       alt="A description of my image."
       quality="90"
-      class="sticky top-0 left-0 object-cover w-full h-full bg02 z--1 mix-blend-lighten"
+      class="fixed top-0 left-0 object-cover w-full h-full bg02 -z-10 mix-blend-lighten md:absolute"
       decoding="async"
     />
   </div>
