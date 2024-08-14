@@ -26,26 +26,21 @@ const currentYear = new Date().getFullYear()
       <div class="col">
         <h3>Social</h3>
         <ul class="social">
-          <li>LinkedIn</li>
-          <li>Read.CV</li>
-          <li>Instagram</li>
-          <li>The Dots</li>
-          <li>Behance</li>
+          <li><a href="https://bit.ly/linkedin-mieras" target="_blank" title="Connect Maarten on Linkedin">LinkedIn</a></li>
+          <li><a href="https://read.cv/mieras" target="_blank" title="Curriculum Vitae on Read.CV">Read.CV</a></li>
+          <li><a href="https://instagram.com/35mieras" target="_blank" title="View more photos on Instagram">Instagram</a></li>
+          <li><a href="https://the-dots.com/users/maarten-mieras-85309" target="_blank" title="Maarten Mieras on The Dots">The Dots</a></li>
+          <li><a href="https://www.behance.net/mieras" target="_blank" title="Maarten Mieras on Behance">Behance</a></li>
         </ul>
       </div>
       <div class="col">
         <h3>Contact</h3>
         <ul class="contact">
-          <li><a
-				class="linkedin"
-        title="Connect on LinkedIn"
-				aria-label="Maarten Mieras on LinkedIn"
-				href="https://www.linkedin.com/in/mieras/"
-				target="_blank">LinkedIn</a></li>
-          <li>Read.CV</li>
-          <li>Instagram</li>
-          <li>The Dots</li>
-          <li>Behance</li>
+          <li>Goudsesingel 136 (unit 5)</li>
+          <li>3011 KD Rotterdam</li>
+          <li>The Netherlands</li>
+          <li><a href="tel://+31642106394" >+31642106394</a></li>
+          <li><a href="mailto:mieras@gmail.com">hello@mier.as</a></li>
         </ul>
       </div>
        <div class="col">
@@ -55,7 +50,7 @@ const currentYear = new Date().getFullYear()
     </div>
   </section>
   <section class="py-8">
-    <div class="container stretch">
+    <div class="container stretch credits">
       <p>
         &copy; {currentYear} - Maarten Mieras build with <a href="https://astro.build/">Astro</a>.
       </p>
@@ -76,19 +71,30 @@ const currentYear = new Date().getFullYear()
   }
 
   .col {
-padding: var(--space-m);
+padding: var(--space-s);
 background: var(--background);
+  }
+
+  h3 {
+    font-size: var(--fontsize-0);
+    text-transform: lowercase;
+  }
+  .col p {
+    font-size: var(--fontsize--2);
+    font-family: var(--font-family-mono);
+    text-transform: uppercase;
+   line-height: 133%;
   }
   ul li {
     font-family: var(--font-family-mono);
     font-size: var(--fontsize--2);
     text-transform: uppercase;
     line-height: 133%;
+    letter-spacing: 0.01em;
   }
 
-  ul li:hover {
-    background:#000;
-    color:#fff;
+  .credits {
+    font-size: var(--fontsize--3);
   }
 </style>
 
