@@ -6,22 +6,6 @@ let index = 0
   <slot />
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const details = document.querySelectorAll('details')
-
-    details.forEach((targetDetail) => {
-      targetDetail.addEventListener('click', () => {
-        details.forEach((detail) => {
-          if (detail !== targetDetail) {
-            detail.removeAttribute('open')
-          }
-        })
-      })
-    })
-  })
-</script>
-
 <style is:global>
   details {
     max-width: 800px;
@@ -41,6 +25,10 @@ let index = 0
     box-shadow: 0 0 0 4px #000, 0 0 0 6px #rgba(255, 255, 255, 0.2);
   }
 
+  summary::marker {
+    display: none;
+  }
+
   summary {
     padding: var(--space-s) var(--space-xs) var(--space-2xs) var(--space-xs);
     display: flex;
@@ -49,6 +37,8 @@ let index = 0
     position: relative;
     cursor: pointer;
     outline: transparent;
+
+    transition: box-shadow 0.3s 0s ease;
   }
 
   summary .number {
@@ -68,7 +58,7 @@ let index = 0
 
   details[open] > summary .number {
     background: var(--action-color);
-    color: var(--background);
+    color: var(--background-full);
   }
 
   summary .title {
@@ -78,15 +68,10 @@ let index = 0
   }
 
   details[open] > summary .icon {
-    /* transform: rotate(180deg); */
+    transform: rotate(180deg);
   }
 
   summary .icon {
-    /* background-image: url('https://assets.codepen.io/7212043/rounded-arrow.svg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    opacity: 0.6; 
-    transform-origin: 1rem 50%;*/
     transition: 0.25s transform ease;
     display: flex;
     padding: var(--space-2xs);
@@ -104,3 +89,130 @@ let index = 0
     color: var(--font-color);
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const details = document.querySelectorAll('details')
+
+    details.forEach((targetDetail) => {
+      targetDetail.addEventListener('click', () => {
+        details.forEach((detail) => {
+          if (detail !== targetDetail && detail.open) {
+            // Roep hier de sluitanimatie aan in plaats van direct het open-attribuut te verwijderen
+            const summary = detail.querySelector('summary')
+            const content = detail.querySelector('.content')
+
+            const startHeight = `${detail.offsetHeight}px`
+            const endHeight = `${summary.offsetHeight}px`
+
+            detail.style.overflow = 'hidden'
+
+            const animation = detail.animate(
+              {
+                height: [startHeight, endHeight],
+              },
+              {
+                duration: 100,
+                easing: 'ease-out',
+              }
+            )
+
+            animation.onfinish = () => {
+              detail.removeAttribute('open')
+              detail.style.height = ''
+              detail.style.overflow = ''
+            }
+          }
+        })
+      })
+    })
+  })
+
+  class Accordion {
+    constructor(el) {
+      this.el = el
+      this.summary = el.querySelector('summary')
+      this.content = el.querySelector('.content')
+      this.animation = null
+      this.isClosing = false
+      this.isExpanding = false
+      this.summary.addEventListener('click', (e) => this.onClick(e))
+    }
+
+    onClick(e) {
+      e.preventDefault()
+      this.el.style.overflow = 'hidden'
+      if (this.isClosing || !this.el.open) {
+        this.open()
+      } else if (this.isExpanding || this.el.open) {
+        this.shrink()
+      }
+    }
+
+    shrink() {
+      this.isClosing = true
+      //we need to grab the height of the summary and the overall element before we shrink it.
+      const startHeight = `${this.el.offsetHeight}px`
+      const endHeight = `${this.summary.offsetHeight}px`
+      //stop previous animations.
+      if (this.animation) {
+        this.animation.cancel()
+      }
+
+      //start the new animation, starting at full height and reducing down to the minimum
+      this.animation = this.el.animate(
+        {
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 700,
+          easing: 'ease-in',
+        }
+      )
+
+      this.animation.onfinish = () => this.onAnimationFinish(false)
+      this.animation.oncancel = () => (this.isClosing = false)
+    }
+
+    open() {
+      //important step, we grab the current height and set it, this could be mid animation so we need to set it each time.
+      this.el.style.height = `${this.el.offsetHeight}px`
+      this.el.open = true
+      window.requestAnimationFrame(() => this.expand())
+    }
+
+    expand() {
+      this.isExpanding = true
+      const startHeight = `${this.el.offsetHeight}px`
+      const endHeight = `${this.summary.offsetHeight + this.content.offsetHeight}px`
+
+      if (this.animation) {
+        this.animation.cancel()
+      }
+
+      this.animation = this.el.animate(
+        {
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 400,
+          easing: 'ease-out',
+        }
+      )
+      this.animation.onfinish = () => this.onAnimationFinish(true)
+      this.animation.oncancel = () => (this.isExpanding = false)
+    }
+
+    onAnimationFinish(open) {
+      this.el.open = open
+      this.animation = null
+      this.isClosing = false
+      this.isExpanding = false
+      this.el.style.height = this.el.style.overflow = ''
+    }
+  }
+
+  document.querySelectorAll('details').forEach((el) => {
+    new Accordion(el)
+  })
+</script>

@@ -9,7 +9,8 @@
   --font-family-mono: 'DM Mono', sans-serif;
   // light theme
   --font-color: var(--neutral-900);
-  --action-color: #EF69FF;
+  --background-full: #fff;
+  --action-color: var(--primary-100);
   --action-color-state: var(--primary-500);
   --background: var(--neutral-100);
   --primary-background: var(--primary-100);
@@ -21,6 +22,7 @@
 // dark color scheme overrides
 .darkmode {
   --font-color: var(--neutral-100);
+  --background-full: #000;
   --action-color: var(--secondary-100);
   --action-color-state: var(--secondary-500);
   --background: var(--dark-100);
