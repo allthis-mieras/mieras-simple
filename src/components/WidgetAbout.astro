@@ -4,11 +4,17 @@ const { class: className, ...rest } = Astro.props
 
 <section class={`px-2 widget ${className}`} {...rest}>
   <p class="intro">
-    Hello, I’m Maarten Mieras, an UX and visual designer with 15 years of freelance experience and co-owner of All This.
+    I’m Maarten, a Rotterdam-based digital designer with over 20 years of experience helping businesses transform their
+    digital experiences.
   </p>
   <p>
-    I specialize in creating intuitive and effective digital interfaces that align user needs with business goals. My
-    holistic approach ensures user-centered, accessible experiences from start to finish.
+    My expertise spans UX/UI, Visual, and Product Design, with a strong focus on creating intuitive, engaging, and
+    scalable solutions. Through my work at All This and previous freelance projects, I’ve helped brands like NOS, WNF,
+    OneFit, and Secrid not only revamp their online presence but also improve usability and user satisfaction.
+  </p><p>
+    My design process is user-centered and highly collaborative, ensuring that the end product not only looks great but
+    also serves its purpose efficiently. Whether you need to fine-tune your user experience or build a product from
+    scratch, I’m here to bring a fresh perspective and design solutions that work.
   </p>
   <ul class="flex flex-col items-stretch gap-2 actions">
     <li><a href="mailto:mieras@gmail.com" class="rounded-full button mail"><span>e-mail</span></a></li>
@@ -26,7 +32,7 @@ const { class: className, ...rest } = Astro.props
     font-size: var(--fontsize--1);
     font-weight: 700;
     line-height: 112.5%;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-wrap: stable;
     color: var(--font-color);
   }
@@ -57,6 +63,7 @@ const { class: className, ...rest } = Astro.props
     border-radius: var(--radius-large);
     background: var(--background);
     border-color: var(--background);
+    cursor: pointer;
   }
 
   .button:hover {
@@ -71,11 +78,14 @@ const { class: className, ...rest } = Astro.props
 
   .mail:hover:before {
     content: 'hello@mier.as';
+    cursor: pointer;
   }
   .phone:hover:before {
     content: '+31(6)42106394';
+    cursor: pointer;
   }
   .linkedin:hover:before {
     content: 'connect';
+    cursor: pointer;
   }
 </style>
